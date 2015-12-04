@@ -1,0 +1,53 @@
+#### `.gitignore`
+# xcode noise
+build/*
+*.mode1v3
+
+# Compiled object files
+*.o
+prototype
+Updater
+
+# qt creator 
+*.pro.user
+*.pro.user.*
+CMakeLists.txt.user
+
+# Generated MOC, resource and UI files
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+qtc_packaging/
+*.app/
+*.sqlite
+
+# Debug and Release directories (created under Windows, not Linux)
+debug/
+release/
+*.Debug
+*.Release
+
+
+# SVN directories
+.svn
+
+# .log files (usually created by QtTest - thanks to VestniK)
+*.log
+*.*~
+
+# Built windows .exe and linux binaries
+# NOTE: PROJECT is a your project's name, analog of PROJECT.exe in Linux
+*.exe
+*.dll
+Makefile
+Makefile.*
+PROJECT
+
+# Windows-specific files
+Thumbs.db
+desktop.ini
+# Mac-specific file
+.DS_Store
+
+
+
