@@ -1,29 +1,40 @@
 project(KodiTv)
 cmake_minimum_required( VERSION 2.8.11 )
 
-set(APP_NAME          testQmlPlugin)
-set(APP_ID            "testqmlplugin.larochelle-brian")
-set(TESTQMLPLUGIN_DIR "share/qml/testQmlPlugin")
-set(MAIN_QML          "Main.qml")
-set(ICON              "graphics/testQmlPlugin.png")
+set(APP_NAME          KodiTv)
+set(APP_ID            "KodiTv.larochelle-brian")
+#set(TESTQMLPLUGIN_DIR "share/qml/KodiTv")
+#set(MAIN_QML          "Main.qml")
+#set(ICON              "graphics/testQmlPlugin.png")
 
-
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt5Core)
-find_package(Qt5Qml)
-find_package(Qt5Quick)
+# Static C++ checks
+#add_custom_target(cppcheck COMMAND cppcheck --enable=all -q --error-exitcode=2
+#                  ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/tests)
 
-set(INCLUDE src/backendplugininterface.h ) 
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Qml REQUIRED)
+find_package(Qt5Quick REQUIRED)
+find_package(Qt5Test REQUIRED)
+
+set(INCLUDE ${CMAKE_SOURCE_DIR}/src/backendplugininterface.h )
+
+#add_custom_target(run COMMAND ${CMAKE_BINARY_DIR}/install/KodiTv )
+
+enable_testing()
 
 add_subdirectory(backends)
 add_subdirectory(src)
+add_subdirectory(tests)
 
 
 
-#add_executable(${PROJECT_NAME} ${INCLUDE} ${SOURCES} ${SRC_LIST})
-#add_library( cmakePlugin SHARED cmakeplugin.cpp )
-
+#include(CTest)
+#enable_testing()
+#set(TEST_LINK_LIBRARIES Qt5::Test)
+#add_subdirectory(tests)
 
 
 

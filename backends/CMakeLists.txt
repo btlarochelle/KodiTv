@@ -1,10 +1,14 @@
+set(INCLUDE PARENT_SCOPE)
 
-#set(INCLUDE PARENT_SCOPE) 
-#add_library(TestPlugin ${INCLUDE} testplugin.cpp)
-
-add_library(TestPlugin SHARED testplugin.cpp)
-add_library(Test2Plugin SHARED test2plugin.cpp)
+add_library(TestPlugin SHARED ${INCLUDE} testplugin.cpp)
+add_library(Test2Plugin SHARED ${INCLUDE} test2plugin.cpp)
+add_library(KodiMysqlDb SHARED ${INCLUDE} kodimysqldatabase.cpp)
 
 qt5_use_modules(TestPlugin Gui Qml Quick)
 qt5_use_modules(Test2Plugin Gui Qml Quick)
+qt5_use_modules(KodiMysqlDb Core)
+
+install(TARGETS TestPlugin DESTINATION ${CMAKE_BINARY_DIR}/install/plugins/)
+install(TARGETS Test2Plugin DESTINATION ${CMAKE_BINARY_DIR}/install/plugins/)
+install(TARGETS KodiMysqlDb DESTINATION ${CMAKE_BINARY_DIR}/install/plugins/)
 

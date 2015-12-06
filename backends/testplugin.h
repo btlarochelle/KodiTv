@@ -12,7 +12,7 @@ class TestPlugin : public QObject, public BackendPluginInterface
     Q_INTERFACES(BackendPluginInterface)
 public:
     TestPlugin();
-    void DoSomething() const;
+    void doSomething() const;
 };
 
 #endif // TESTPLUGIN_H

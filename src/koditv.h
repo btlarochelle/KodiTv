@@ -17,10 +17,7 @@ public:
 private:
     QDir pluginsDir;
     QStringList pluginFileNames;
-
 };
-
-
 
 
 

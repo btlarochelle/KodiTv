@@ -8,7 +8,7 @@ class BackendPluginInterface
 public:
     virtual ~BackendPluginInterface() {}
 
-    virtual void DoSomething() const = 0;
+    virtual void doSomething() const = 0;
 
 };
 

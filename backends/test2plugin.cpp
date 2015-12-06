@@ -10,7 +10,7 @@ Test2Plugin::Test2Plugin()
 
 }
 
-void Test2Plugin::DoSomething() const
+void Test2Plugin::doSomething() const
 {
-    qDebug() << "do somethign  2 called";
+    qDebug() << "do somethign 2 called";
 }

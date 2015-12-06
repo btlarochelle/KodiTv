@@ -3,15 +3,14 @@
 #include <QDebug>
 #include <QPluginLoader>
 
-// system
 
 // local
 #include "koditv.h"
-
+#include "backendplugininterface.h"
 
 KodiTv::KodiTv()
 {
-    qDebug() << "farts";
+    qDebug() << "KodiTv ctor";
     loadPlugins();
 }
 
@@ -19,18 +18,17 @@ KodiTv::KodiTv()
 void KodiTv::loadPlugins()
 {
     pluginsDir = QDir(qApp->applicationDirPath());
-
     pluginsDir.cd("plugins");
 
-    foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
+    foreach(QString fileName, pluginsDir.entryList(QDir::Files)) {
         QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
         QObject *plugin = loader.instance();
-        if (plugin) {
-
+        if(plugin) {
+            BackendPluginInterface *tmp = qobject_cast<BackendPluginInterface*>(plugin);
+            tmp->doSomething();
             pluginFileNames += fileName;
         }
     }
-
-    qDebug() << pluginFileNames;
+    qDebug() << "available plugins: " << pluginFileNames;
 }
 

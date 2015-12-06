@@ -10,7 +10,7 @@ TestPlugin::TestPlugin()
 
 }
 
-void TestPlugin::DoSomething() const
+void TestPlugin::doSomething() const
 {
     qDebug() << "do somethign called";
 }
