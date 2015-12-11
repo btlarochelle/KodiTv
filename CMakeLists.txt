@@ -1,6 +1,6 @@
-set(APP_NAME          KodiTv)
-set(APP_ID            "KodiTv.larochelle-brian")
-#set(TESTQMLPLUGIN_DIR "share/qml/KodiTv")
+set(APP_NAME           kodiTv)
+set(APP_ID            "${APP_NAME}.larochelle-brian")
+#set(TESTQMLPLUGIN_DIR "share/qml/${APP_NAME}")
 #set(MAIN_QML          "Main.qml")
 #set(ICON              "graphics/testQmlPlugin.png")
 
@@ -9,23 +9,24 @@ cmake_minimum_required( VERSION 3.0.2 )
 
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
-set(APP_NAME_VERSION_MAJOR 1)
-set(APP_NAME_VERSION_MINOR 0)
-set(APP_NAME_VERSION_PATCH 6)
-set(APP_NAME_Version_String ${APP_NAME_VERSION_MAJOR}.${APP_NAME_VERSION_MINOR}.${APP_NAME_VERSION_PATCH} )
-
+set(VERSION_MAJOR 1)
+set(VERSION_MINOR 0)
+set(VERSION_PATCH 6)
+set(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}" )
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
-set(CMAKE_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/install")
-
-
+#set(CMAKE_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/install")
+if (NOT DEFINED CMAKE_INSTALL_PREFIX)
+    set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install CACHE PATH "" FORCE)
+endif()
 if(${PROJECT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
    message(FATAL_ERROR "In-tree build attempt detected, aborting. Set your build dir outside your source dir, delete CMakeCache.txt from source root and try again.")
 endif()
-
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
+
+
 
 # configure a header file to pass some of the CMake settings
 # to the source code
@@ -52,7 +53,6 @@ find_package(Qt5Test REQUIRED)
 #find_package(Qt5Sql REQUIRED)
 #find_package(Qt5Xml REQUIRED)
 
-#include(GNUInstallDirs)
 set(HEADERS "" )
 
 # Static C++ checks

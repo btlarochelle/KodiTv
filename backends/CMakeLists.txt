@@ -6,7 +6,8 @@ set(HEADERS ${HEADERS}
 
 #add_library(TestPlugin SHARED ${INCLUDE} testplugin.cpp)
 #add_library(Test2Plugin SHARED ${INCLUDE} test2plugin.cpp)
-add_library(KodiMysqlDb SHARED ${HEADERS} kodimysqldatabase.cpp)
+#add_library(KodiMysqlDb SHARED ${HEADERS} kodimysqldatabase.cpp)
+add_library(KodiMysqlDb SHARED kodimysqldatabase.cpp)
 
 #qt5_use_modules(TestPlugin Gui Qml Quick)
 #qt5_use_modules(Test2Plugin Gui Qml Quick)

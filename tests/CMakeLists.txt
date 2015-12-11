@@ -13,15 +13,18 @@ include_directories(
     ${HEADER_DIRS}
     ${PROJECT_SOURCE_DIR}/backends/
 )
-#set(CMAKE_SKIP_RPATH TRUE)
 
-add_executable(KodiMysqlDbTest kodimysqldbtest.cpp)
 
-target_link_libraries(KodiMysqlDbTest ${PROJECT_BINARY_DIR}/backends/libKodiMysqlDb.so)
+add_executable(kodiMysqlDbTest kodimysqldbtest.cpp)
 
-set_target_properties(KodiMysqlDbTest PROPERTIES EXCLUDE_FROM_ALL 1 EXCLUDE_FROM_DEFAULT_BUILD 1)
+target_link_libraries(kodiMysqlDbTest KodiMysqlDb)
 
-ADD_TEST(NAME KodiMysqlDbTest COMMAND KodiMysqlDbTest)
+add_test(NAME kodiMysqlDbTest COMMAND KodiMysqlDbTest)
 
-qt5_use_modules(KodiMysqlDbTest Test Core)
+qt5_use_modules(kodiMysqlDbTest Test Core)
 
+
+
+
+#target_link_libraries(KodiMysqlDbTest ${PROJECT_BINARY_DIR}/backends/libKodiMysqlDb.so)
+#set_target_properties(KodiMysqlDbTest PROPERTIES EXCLUDE_FROM_ALL 1 EXCLUDE_FROM_DEFAULT_BUILD 1)

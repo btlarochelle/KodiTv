@@ -28,7 +28,7 @@ QTEST_MAIN(KodiMysqlDbTest)
 #include "kodimysqldbtest.moc"
 #endif
 
-
+// *************************************
 // *************************************
 void KodiMysqlDbTest::initTestCase()
 {

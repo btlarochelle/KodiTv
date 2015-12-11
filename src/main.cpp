@@ -1,12 +1,12 @@
 #include <QCoreApplication>
 
-#include "koditv.h"
+#include "core.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    KodiTv kodiTv;
-    Q_UNUSED(kodiTv);
+    Core core;
+    Q_UNUSED(core);
 
     return a.exec();
 }

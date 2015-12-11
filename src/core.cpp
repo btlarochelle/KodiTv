@@ -5,17 +5,17 @@
 
 
 // local
-#include "koditv.h"
+#include "core.h"
 #include "backendplugininterface.h"
 
-KodiTv::KodiTv()
+Core::Core()
 {
-    qDebug() << "KodiTv ctor";
+    qDebug() << "Core ctor";
     loadPlugins();
 }
 
 
-void KodiTv::loadPlugins()
+void Core::loadPlugins()
 {
     pluginsDir = QDir(qApp->applicationDirPath());
     pluginsDir.cd("plugins");
