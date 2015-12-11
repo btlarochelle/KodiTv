@@ -1,31 +1,27 @@
 
+set(HEADERS ${HEADERS} PARENT_SCOPE)
 
-# add_custom_target(unittests)
+foreach (_headerFile ${HEADERS})
+    get_filename_component(_dir ${_headerFile} PATH)
+    #message(STATUS "header dirs tests: "  ${_dir} )
+    #message(STATUS "header file tests: "  ${_headerFile} )
+    list (APPEND HEADER_DIRS ${_dir})
+endforeach()
+#message(STATUS "header dirs: "  ${HEADER_DIRS} )
 
-#add_executable(unittests testplugintest.cpp)
-#add_test(foo foo)
+include_directories(
+    ${HEADER_DIRS}
+    ${PROJECT_SOURCE_DIR}/backends/
+)
+#set(CMAKE_SKIP_RPATH TRUE)
 
-#qt5_use_modules(${util_test}TestExec Test Core Qml)
-#target_link_libraries(testplugintest.cpp Qt5::Test)
+add_executable(KodiMysqlDbTest kodimysqldbtest.cpp)
 
-#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
-#set(testplugintest_SRCS testplugintest.cpp)
-#ADD_EXECUTABLE( TestPluginTest ${testplugintest_SRCS} )
-#TARGET_LINK_LIBRARIES( TestPluginTest ${TEST_LIBRARIES} )
-#ADD_TEST( NAME TestPluginTest COMMAND TestPluginTest )
-#qt5_use_modules(TestPluginTest Test Core)
+target_link_libraries(KodiMysqlDbTest ${PROJECT_BINARY_DIR}/backends/libKodiMysqlDb.so)
 
-ADD_EXECUTABLE(TestPluginTest testplugintest.cpp)
-ADD_EXECUTABLE(KodiMysqlDbTest kodimysqldbtest.cpp)
+set_target_properties(KodiMysqlDbTest PROPERTIES EXCLUDE_FROM_ALL 1 EXCLUDE_FROM_DEFAULT_BUILD 1)
 
-ADD_TEST(NAME TestPluginTest COMMAND TestPluginTest)
 ADD_TEST(NAME KodiMysqlDbTest COMMAND KodiMysqlDbTest)
 
-
-qt5_use_modules(TestPluginTest Test Core)
 qt5_use_modules(KodiMysqlDbTest Test Core)
-
-
-
-
 

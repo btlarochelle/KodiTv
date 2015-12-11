@@ -3,8 +3,10 @@
 
 #include "kodimysqldatabase.h"
 
+KodiMysqlDatabase::KodiMysqlDatabase() {}
+KodiMysqlDatabase::~KodiMysqlDatabase() {}
 
 void KodiMysqlDatabase::doSomething() const
 {
-    qDebug() << "do mysql stuff";
+    qDebug() << "KodiMysqlDatabase::doSomething() Called";
 }

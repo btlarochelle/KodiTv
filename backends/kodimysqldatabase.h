@@ -11,6 +11,8 @@ class KodiMysqlDatabase : public QObject, public BackendPluginInterface
     Q_PLUGIN_METADATA(IID "com.KodiTv.BackendPluginInterface" )
     Q_INTERFACES(BackendPluginInterface)
 public:
+    KodiMysqlDatabase();
+    ~KodiMysqlDatabase();
     void doSomething() const;
 
 };

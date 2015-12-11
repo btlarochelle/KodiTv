@@ -1,5 +1,7 @@
 
-add_executable(KodiTv 
+set(HEADERS ${HEADERS} ${CMAKE_CURRENT_SOURCE_DIR}/backendplugininterface.h PARENT_SCOPE )
+
+add_executable(KodiTv
   main.cpp
   koditv.cpp
 )
