@@ -1,16 +1,16 @@
-#ifndef KODITV_H
-#define KODITV_H
+#ifndef CORE_H
+#define CORE_H
 
 #include <QObject>
 #include <QDir>
 #include <QStringList>
 
 
-class KodiTv : public QObject
+class Core : public QObject
 {
     Q_OBJECT
 public:
-    KodiTv();
+    Core();
     
     void loadPlugins();
 

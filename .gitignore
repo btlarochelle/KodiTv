@@ -12,6 +12,7 @@ Updater
 *.pro.user
 *.pro.user.*
 CMakeLists.txt.user
+CMakeLists.txt.user.*
 
 # Generated MOC, resource and UI files
 moc_*.cpp

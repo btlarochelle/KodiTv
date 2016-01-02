@@ -1,0 +1,83 @@
+{
+    "channels": [
+        {
+            "criteria": {
+                "and": {
+                    "genre": {
+                        "like": "drama"
+                    },
+                    "watchstatus": {
+                        "is": "true"
+                    }
+                },
+                "columns": [
+                    "title",
+                    "summary",
+                    "description"
+                ],
+                "from": "movies",
+                "limit": 10,
+                "order_by": {
+                    "title": "DESC"
+                },
+                "where": {
+                    "genre": {
+                        "like": "sci fi"
+                    }
+                }
+            },
+            "description": "channel 1",
+            "number": 1,
+            "type": "movie",
+            "videos": [
+                {
+                    "endTime": "2:32",
+                    "file": "/path/to/movie1.mkv",
+                    "runTime": "1:32",
+                    "startTime": "1:00",
+                    "summary": "summary of video 1",
+                    "title": "video 1"
+                },
+                {
+                    "endTime": "3:33",
+                    "file": "/path/to/movie2.mkv",
+                    "runTime": "1:00",
+                    "startTime": "2:33",
+                    "summary": "summary of video 2",
+                    "title": "video 2"
+                }
+            ]
+        },
+        {
+            "description": "channel 2",
+            "number": 2,
+            "type": "tvshow",
+            "videos": [
+                {
+                    "endTime": "2:32",
+                    "file": "/path/to/movie1.mkv",
+                    "runTime": "1:32",
+                    "startTime": "1:00",
+                    "summary": "summary of video 1",
+                    "title": "video 1"
+                },
+                {
+                    "endTime": "3:33",
+                    "file": "/path/to/movie2.mkv",
+                    "runTime": "1:01",
+                    "startTime": "2:33",
+                    "summary": "summary of video 2",
+                    "title": "video 2"
+                },
+                {
+                    "endTime": "4:34",
+                    "file": "/path/to/movie3.mkv",
+                    "runTime": "1:00",
+                    "startTime": "3:34",
+                    "summary": "summary of video 3",
+                    "title": "video 3"
+                }
+            ]
+        }
+    ]
+}
