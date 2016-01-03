@@ -29,7 +29,7 @@ public:
     // plugin interface
     void doSomething() const;
 signals:
-    //void finished();
+    void finished();
 private slots:
     void slotResults(const QString &queryId, const QList<QSqlRecord> &records, const QString &resultId);
     void process(QString msg);

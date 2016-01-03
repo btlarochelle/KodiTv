@@ -54,6 +54,7 @@ void KodiMysqlDatabase::doSomething() const
 
 void KodiMysqlDatabase::slotResults(const QString &queryId, const QList<QSqlRecord> &records, const QString &resultId)
 {
+    emit finished();
     qDebug() << DEBUG_FUNCTION_SHORT << "entered";
 
     qDebug() << "\n";
@@ -61,6 +62,23 @@ void KodiMysqlDatabase::slotResults(const QString &queryId, const QList<QSqlReco
     qDebug() << "returned " << records.count() << " records";
     //qDebug() << "records: "  << records;
     qDebug() << "resultId: " << resultId;
+
+    foreach (QSqlRecord record, records) {
+        //qDebug() << "name :" << record.field(0);
+        //qDebug() << "id: " << record.value(0) << "value: " << record.value(1);
+        if(queryId == "movie_genres" || queryId == "tvshow_genres") {
+            qDebug() << "genre: " << record.value(0).toString();
+        }
+        else if(queryId == "movies") {
+
+            //qDebug() << "id: " << record.value(0) << "value: " << record.value(1);
+            qDebug() << "title: " << record.value(2).toString();
+        }
+    }
+
+
+
+
 }
 
 void KodiMysqlDatabase::process(QString msg)

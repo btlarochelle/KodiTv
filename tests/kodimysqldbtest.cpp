@@ -6,6 +6,7 @@
 #include <QtTest>
 #include <QSignalSpy>
 #include <QCoreApplication>
+#include <QTime>
 #include <QDebug>
 
 // system
@@ -28,23 +29,27 @@ const QString Driver("QMYSQL3");
 class KodiMysqlDbTest : public QObject
 {
     Q_OBJECT
+private:
+    void wait();
+    KodiMysqlDatabase *db;
+    bool mWait;
 public slots:
     void finished();
-    void results(const QString &query, const QList<QSqlRecord> &records, const QString &resultId);
+    void results(const QString &query, const QList<QSqlRecord> &records,
+                 const QString &resultId);
 private slots:
     void initTestCase();
     void cleanupTestCase();
-    void init();
+    void init() { mWait = true; }
     void cleanup() {}
 
     // tests
-    void testSetup();
+    void testQueries();
+    void testGetMovieGenres();
     void testGetMovies();
     void testGetTvShows();
     void testSomething();
-private:
-    KodiMysqlDatabase *db;
-    bool wait;
+
 };
 QTEST_GUILESS_MAIN(KodiMysqlDbTest)
 #include "kodimysqldbtest.moc"
@@ -52,19 +57,37 @@ QTEST_GUILESS_MAIN(KodiMysqlDbTest)
 
 // *************************************
 // *************************************
+
+// private
+void KodiMysqlDbTest::wait()
+{
+    QTime time = QTime::currentTime();
+    while(mWait) {
+        QCoreApplication::processEvents();
+        if(time.elapsed() > 3000) {
+            qDebug() << "breaking timeout";
+            break;
+        }
+    }
+    mWait = true;
+}
+
+// public slots
 void KodiMysqlDbTest::finished()
 {
-    qDebug() << DEBUG_FUNCTION << "entered";
-    wait = false;
+    mWait = false;
 }
 
 void KodiMysqlDbTest::results(const QString &query, const QList<QSqlRecord> &records, const QString &resultId)
 {
     qDebug() << "query: " << query;
     qDebug() << "resultId: " << resultId;
+    qDebug() << "records: " << records;
+
     Q_UNUSED(records);
 }
 
+// private slots
 void KodiMysqlDbTest::initTestCase()
 {
     Connection connection;
@@ -79,8 +102,7 @@ void KodiMysqlDbTest::initTestCase()
     db = new KodiMysqlDatabase(&connection);
 
     db->start();
-    //    connect(&db, SIGNAL())
-    //QObject::connect(&db, SIGNAL(finished() ), this, SLOT(finished() ) );
+    QObject::connect(db, SIGNAL(finished() ), this, SLOT(finished() ) );
 }
 
 void KodiMysqlDbTest::cleanupTestCase()
@@ -90,20 +112,76 @@ void KodiMysqlDbTest::cleanupTestCase()
     delete db;
 }
 
-void KodiMysqlDbTest::init() { wait = true; }
-
-
-void KodiMysqlDbTest::testSetup()
+// tests
+void KodiMysqlDbTest::testQueries()
 {
     //QSKIP("skip");
-    QTest::qWait(1000);
+    QTest::qWait(1000); // wait for worker it get ready
+    QString tmp;
 
-    db->runQuery("genres", "select * from genre");
+    tmp.append("select distinct(name) from genre ");
+    tmp.append("join genre_link on genre.genre_id=genre_link.genre_id ");
+    tmp.append("and genre_link.media_type='movie' ");
+    tmp.append("order by name asc");
+
+    db->runQuery("movie_genres", tmp);
+    wait();
+
+    tmp.clear();
+    tmp.append("select distinct(name) from genre ");
+    tmp.append("join genre_link on genre.genre_id=genre_link.genre_id ");
+    tmp.append("and genre_link.media_type='tvshow' ");
+    tmp.append("order by name asc");
+
+    db->runQuery("tvshow_genres", tmp);
+    wait();
+
+    tmp.clear();
+    tmp.append("select * from movie_view ");
+    tmp.append("join genre_link on genre_link.media_id=movie_view.idMovie ");
+    tmp.append("and genre_link.media_type='movie' ");
+    tmp.append("join genre on genre.genre_id=genre_link.genre_id ");
+    tmp.append("where genre.name like 'Horror' ");
+    tmp.append("order by rand() ");
+    tmp.append("limit 10 ");
+
+    db->runQuery("movies", tmp);
+    wait();
+}
+
+void KodiMysqlDbTest::testGetMovieGenres()
+{
+    QSKIP("skip");
+    QTest::qWait(1000); // wait for worker it get ready
+    QString tmp;
+
+    /*
+    tmp.append("select distinct(name) from genre ");
+    tmp.append("join genre_link on genre.genre_id=genre_link.genre_id ");
+    tmp.append("and genre_link.media_type='movie'");
+    db->runQuery("movie_genres", tmp);
     QTest::qWait(3000);
-    //db->runQuery("movies", "select * from movie_view");
-    //QTest::qWait(10000);
+
     //while(wait)
     //    QCoreApplication::processEvents();
+
+    tmp.clear();
+    tmp.append("select distinct(name) from genre ");
+    tmp.append("join genre_link on genre.genre_id=genre_link.genre_id ");
+    tmp.append("and genre_link.media_type='tvshow'");
+    db->runQuery("tvshow_genres", tmp);
+    QTest::qWait(3000);
+    */
+
+
+    tmp.clear();
+    tmp.append("select * from movie_view ");
+    tmp.append("join genre_link on genre_link.media_id=movie_view.idMovie ");
+    tmp.append("and genre_link.media_type='movie' ");
+    tmp.append("join genre on genre.genre_id=genre_link.genre_id ");
+    tmp.append("where genre.name like 'Horror' ");
+    db->runQuery("movies", tmp);
+    QTest::qWait(3000);
 }
 
 void KodiMysqlDbTest::testGetMovies()
@@ -123,8 +201,6 @@ void KodiMysqlDbTest::testGetMovies()
     wait = true;
     db.selectMovies();
     */
-    while(wait)
-        QCoreApplication::processEvents();
     //QTest::qWait(20000);
 }
 

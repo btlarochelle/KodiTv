@@ -98,6 +98,7 @@ void SqlWorker::executeOneTime(const QString& queryId, const QString& sql)
     bool ok = query.exec(sql);
     if(!ok) {
         qDebug() << DEBUG_FUNCTION << QString("execute failed for one time query id [%1]").arg(queryId);
+        qDebug() << DEBUG_FUNCTION << query.lastError();
         emit executeFailed(queryId, query.lastError(), QString());
         return;
     }
