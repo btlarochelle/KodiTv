@@ -108,7 +108,7 @@ void KodiMysqlDbTest::initTestCase()
 void KodiMysqlDbTest::cleanupTestCase()
 {
     db->end();
-    //QTest::qWait(10000);
+    //QTest::qWait(1000);
     delete db;
 }
 

@@ -8,6 +8,7 @@ add_subdirectory(json)
 add_executable(${APP_NAME}
   main.cpp
   core.cpp
+  autochannels.cpp
   ${APP_SRCS}
 )
 

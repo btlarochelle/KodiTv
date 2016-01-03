@@ -38,11 +38,9 @@ public:
     // getters
     QList<Condition> where() const;
     int limit() const;
-
     // setters
     void setLimit(const int &limit);
     void addWhere(const QString &column, const QString &operation, const QString &value);
-
 
     QString toString();
 private:

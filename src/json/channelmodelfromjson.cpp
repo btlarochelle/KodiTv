@@ -27,8 +27,9 @@ ChannelModelFromJson::ChannelModelFromJson(const QString &file)
     jsonFile.close();
     QJsonParseError parseError;
     document = QJsonDocument::fromJson(val.toUtf8(), &parseError);
-    qDebug() << DEBUG_FUNCTION << "error: " << parseError.errorString();
 
+    if(parseError.error != QJsonParseError::NoError)
+        qDebug() << DEBUG_FUNCTION << "error: " << parseError.errorString();
 }
 
 // public

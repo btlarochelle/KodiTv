@@ -4,31 +4,10 @@
             "criteria": {
                 "limit": 10,
                 "where": [
-                    {
-                        "genre": {
-                            "like": "action"
-                        }
-                    },
-                    {
-                        "genre": {
-                            "like": "drama"
-                        }
-                    },
-                    {
-                        "genre": {
-                            "like": "sci fi"
-                        }
-                    },
-                    {
-                        "genre": {
-                            "like": "fantasy"
-                        }
-                    },
-                    {
-                        "watchstatus": {
-                            "is": "true"
-                        }
-                    }
+		    { "genre" : { "like" : "action" }},
+		    { "genre" : { "like" : "drama" }},
+		    { "genre" : { "like" : "sci fi" }},
+		    { "watchstatus" : {"is" : "true" }}
                 ]
             },
             "description": "channel 1",

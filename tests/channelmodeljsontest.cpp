@@ -59,7 +59,7 @@ void ChannelModelFromJsonTest::testBasicJsonParsing()
     //QCOMPARE(channel->criteria().where().value(), QString("sci fi"));
 
     QCOMPARE(channel->criteria().hasWhere(), true);
-    QCOMPARE(channel->criteria().whereCount(), 4);
+    QCOMPARE(channel->criteria().whereCount(), 5);
 
     QCOMPARE(channel->criteria().where().at(0).column(), QString("genre"));
     QCOMPARE(channel->criteria().where().at(0).operation(), QString("like"));
@@ -73,9 +73,13 @@ void ChannelModelFromJsonTest::testBasicJsonParsing()
     QCOMPARE(channel->criteria().where().at(2).operation(), QString("like"));
     QCOMPARE(channel->criteria().where().at(2).value(), QString("sci fi"));
 
-    QCOMPARE(channel->criteria().where().at(3).column(), QString("watchstatus"));
-    QCOMPARE(channel->criteria().where().at(3).operation(), QString("is"));
-    QCOMPARE(channel->criteria().where().at(3).value(), QString("true"));
+    QCOMPARE(channel->criteria().where().at(3).column(), QString("genre"));
+    QCOMPARE(channel->criteria().where().at(3).operation(), QString("like"));
+    QCOMPARE(channel->criteria().where().at(3).value(), QString("fantasy"));
+
+    QCOMPARE(channel->criteria().where().at(4).column(), QString("watchstatus"));
+    QCOMPARE(channel->criteria().where().at(4).operation(), QString("is"));
+    QCOMPARE(channel->criteria().where().at(4).value(), QString("true"));
 
 
     //QCOMPARE(channel->criteria().andList().at(0).column(), QString("genre"));
@@ -156,13 +160,16 @@ void ChannelModelFromJsonTest::testBasicJsonWriting()
     orgFile.close();
     newFile.close();
 
-    QCOMPARE(file1.size(), 2109);
-    //QCOMPARE(file2.size(), 2109);
+    QCOMPARE(file1.size(), 2698);
+    QCOMPARE(file2.size(), 2698);
     QCOMPARE(file1, file2);
 
     file2.append("extra data");
     QVERIFY(file1 != file2);
 }
+
+
+
 
 
 

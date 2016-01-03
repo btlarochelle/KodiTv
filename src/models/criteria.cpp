@@ -60,16 +60,6 @@ void Criteria::addWhere(const QString &column, const QString &operation, const Q
 QString Criteria::toString()
 {
     QString query;
-    /*
-    if(!mWhere.isEmpty()) {
-        query.append(QString(" where %1 %2 %3").arg(mWhere.column()).arg(mWhere.operation()).arg(mWhere.value()) );
-        if(!mAnd.isEmpty() ) {
-            for(int i = 0; i < mAnd.size(); i++ ) {
-                query.append(QString(" and %1 %2 %3").arg(mAnd.at(i).column()).arg(mAnd.at(i).operation()).arg(mAnd.at(i).value()) );
-            }
-        }
-    }
-    */
     if(!mWhere.isEmpty()) {
         for(int i = 0; i < mWhere.size(); i++) {
             if(i == 0)

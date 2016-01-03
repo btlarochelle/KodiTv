@@ -55,36 +55,20 @@ void ChannelModelToJson::write(ChannelModel &model)
 QJsonObject ChannelModelToJson::constructCriteriaObject(Criteria &criteria)
 {
     QJsonObject object;
-
     object["limit"] = criteria.limit();
-
-
     if(criteria.hasWhere() ) {
-
         QJsonArray array;
-        QJsonObject column;
         for(int i = 0; i < criteria.whereCount(); i++) {
-            column.empty();
+            QJsonObject column;
+
             QJsonObject obj {
                 { criteria.where().at(i).operation(), criteria.where().at(i).value()   }
             };
 
             column[criteria.where().at(i).column()] = obj;
+            array.append(column);
         }
-        array.append(column);
-
-
-        QJsonObject obj2;
-        for(int i = 0; i < criteria.whereCount(); i++) {
-            QJsonObject obj2;
-            QJsonObject obj {
-                { criteria.where().at(i).operation(), criteria.where().at(i).value()   }
-            };
-            obj2.insert(criteria.where().at(i).column(), obj);
-        }
-        object["where"] = obj2;
-
-
+        object["where"] = array;
     }
     return object;
 }
