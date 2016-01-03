@@ -2,16 +2,27 @@
     "channels": [
         {
             "criteria": {
-                "limit": 10,
-                "where": {
+                "and": {
                     "genre": {
                         "like": "drama"
                     },
-                    "genre": {
-                        "like": "sci fi"
-                    },
                     "watchstatus": {
                         "is": "true"
+                    }
+                },
+                "columns": [
+                    "title",
+                    "summary",
+                    "description"
+                ],
+                "from": "movies",
+                "limit": 10,
+                "order_by": {
+                    "title": "DESC"
+                },
+                "where": {
+                    "genre": {
+                        "like": "sci fi"
                     }
                 }
             },

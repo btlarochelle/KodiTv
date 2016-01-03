@@ -57,38 +57,34 @@ QJsonObject ChannelModelToJson::constructCriteriaObject(Criteria &criteria)
     QJsonObject object;
 
     object["limit"] = criteria.limit();
-    object["from"] = criteria.from();
 
-    QJsonArray columnArray;
-    for(int i = 0; i < criteria.columnCount(); i++ ) {
-        columnArray.append(criteria.column().at(i) );
-    }
-    object["columns"] = columnArray;
 
     if(criteria.hasWhere() ) {
-        QJsonObject obj {
-            { criteria.where().operation(), criteria.where().value()   }
-        };
-        QJsonObject obj2;
-        obj2.insert(criteria.where().column(), obj);
-        object["where"] = obj2;
-    }
-    if(criteria.andCount() > 0 ) {
+
+        QJsonArray array;
+        QJsonObject column;
+        for(int i = 0; i < criteria.whereCount(); i++) {
+            column.empty();
+            QJsonObject obj {
+                { criteria.where().at(i).operation(), criteria.where().at(i).value()   }
+            };
+
+            column[criteria.where().at(i).column()] = obj;
+        }
+        array.append(column);
+
 
         QJsonObject obj2;
-        for(int i = 0; i < criteria.andCount(); i++) {
+        for(int i = 0; i < criteria.whereCount(); i++) {
+            QJsonObject obj2;
             QJsonObject obj {
-                { criteria.andList().at(i).operation(), criteria.andList().at(i).value()   }
+                { criteria.where().at(i).operation(), criteria.where().at(i).value()   }
             };
-            obj2.insert(criteria.andList().at(i).column(), obj);
+            obj2.insert(criteria.where().at(i).column(), obj);
         }
-        object["and"] = obj2;
-    }
-    if(criteria.hasOrderBy() ) {
-        QJsonObject obj {
-            { criteria.orderBy().column(), criteria.orderBy().value()   }
-        };
-        object["order_by"] = obj;
+        object["where"] = obj2;
+
+
     }
     return object;
 }

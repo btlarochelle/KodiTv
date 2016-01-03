@@ -32,36 +32,21 @@ public:
     ~Criteria();
     void clear();
     bool isEmpty() const;
-    int columnCount() const;
-    int andCount() const;
     bool hasWhere() const;
-    bool hasOrderBy() const;
+    int whereCount() const;
 
     // getters
-    QStringList column() const;
-    QString from() const;
-    Condition where() const;
-    QList<Condition> andList() const;
+    QList<Condition> where() const;
     int limit() const;
-    Condition orderBy() const;
 
     // setters
-    void setFrom(const QString &from);
     void setLimit(const int &limit);
-    void setOrderBy(const QString &column, const QString &value);
-
-    // append setters
-    void appendColumn(const QString &column);
     void addWhere(const QString &column, const QString &operation, const QString &value);
-    void addAnd(const QString &column, const QString &operation, const QString &value);
+
 
     QString toString();
 private:
-    QStringList mColumns;
-    QString mFrom;
-    Condition mWhere;
-    QList<Condition> mAnd;
-    Condition mOrderBy;
+    QList<Condition> mWhere;
     int mLimit;
 };
 

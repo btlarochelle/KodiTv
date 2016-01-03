@@ -50,20 +50,42 @@ void ChannelModelFromJsonTest::testBasicJsonParsing()
     QCOMPARE(channel->type(), Channel::Type::Movie);
     QCOMPARE(channel->description(), QString("channel 1") );
     // db criteria
-    QCOMPARE(channel->criteria().column(), QStringList() << "title" << "summary" <<
-                                            "description");
-    QCOMPARE(channel->criteria().from(), QString("movies"));
-    QCOMPARE(channel->criteria().where().column(), QString("genre"));
-    QCOMPARE(channel->criteria().where().operation(), QString("like"));
-    QCOMPARE(channel->criteria().where().value(), QString("sci fi"));
-    QCOMPARE(channel->criteria().andList().at(0).column(), QString("genre"));
-    QCOMPARE(channel->criteria().andList().at(0).operation(), QString("like"));
-    QCOMPARE(channel->criteria().andList().at(0).value(), QString("drama"));
-    QCOMPARE(channel->criteria().andList().at(1).column(), QString("watchstatus"));
-    QCOMPARE(channel->criteria().andList().at(1).operation(), QString("is"));
-    QCOMPARE(channel->criteria().andList().at(1).value(), QString("true"));
-    QCOMPARE(channel->criteria().orderBy().column(), QString("title"));
-    QCOMPARE(channel->criteria().orderBy().value(), QString("DESC"));
+
+    //QCOMPARE(channel->criteria().column(), QStringList() << "title" << "summary" <<
+    //                                    "description");
+    //QCOMPARE(channel->criteria().from(), QString("movies"));
+    //QCOMPARE(channel->criteria().where().column(), QString("genre"));
+    //QCOMPARE(channel->criteria().where().operation(), QString("like"));
+    //QCOMPARE(channel->criteria().where().value(), QString("sci fi"));
+
+    QCOMPARE(channel->criteria().hasWhere(), true);
+    QCOMPARE(channel->criteria().whereCount(), 4);
+
+    QCOMPARE(channel->criteria().where().at(0).column(), QString("genre"));
+    QCOMPARE(channel->criteria().where().at(0).operation(), QString("like"));
+    QCOMPARE(channel->criteria().where().at(0).value(), QString("action"));
+
+    QCOMPARE(channel->criteria().where().at(1).column(), QString("genre"));
+    QCOMPARE(channel->criteria().where().at(1).operation(), QString("like"));
+    QCOMPARE(channel->criteria().where().at(1).value(), QString("drama"));
+
+    QCOMPARE(channel->criteria().where().at(2).column(), QString("genre"));
+    QCOMPARE(channel->criteria().where().at(2).operation(), QString("like"));
+    QCOMPARE(channel->criteria().where().at(2).value(), QString("sci fi"));
+
+    QCOMPARE(channel->criteria().where().at(3).column(), QString("watchstatus"));
+    QCOMPARE(channel->criteria().where().at(3).operation(), QString("is"));
+    QCOMPARE(channel->criteria().where().at(3).value(), QString("true"));
+
+
+    //QCOMPARE(channel->criteria().andList().at(0).column(), QString("genre"));
+    //QCOMPARE(channel->criteria().andList().at(0).operation(), QString("like"));
+    //QCOMPARE(channel->criteria().andList().at(0).value(), QString("drama"));
+    //QCOMPARE(channel->criteria().andList().at(1).column(), QString("watchstatus"));
+    //QCOMPARE(channel->criteria().andList().at(1).operation(), QString("is"));
+    //QCOMPARE(channel->criteria().andList().at(1).value(), QString("true"));
+    //QCOMPARE(channel->criteria().orderBy().column(), QString("title"));
+    //QCOMPARE(channel->criteria().orderBy().value(), QString("DESC"));
     QCOMPARE(channel->criteria().limit(), 10);
 
     QCOMPARE(channel->videoAt(0)->title(), QString("video 1"));
@@ -116,6 +138,7 @@ void ChannelModelFromJsonTest::testBasicJsonParsing()
 
 void ChannelModelFromJsonTest::testBasicJsonWriting()
 {
+    //QSKIP("skip");
     toJson = new ChannelModelToJson(WriteBasicJson);
     toJson->write(model);
     delete toJson;
@@ -133,8 +156,8 @@ void ChannelModelFromJsonTest::testBasicJsonWriting()
     orgFile.close();
     newFile.close();
 
-    QCOMPARE(file1.size(), 2531);
-    QCOMPARE(file2.size(), 2531);
+    QCOMPARE(file1.size(), 2109);
+    //QCOMPARE(file2.size(), 2109);
     QCOMPARE(file1, file2);
 
     file2.append("extra data");

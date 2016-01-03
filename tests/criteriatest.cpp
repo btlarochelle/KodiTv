@@ -31,16 +31,18 @@ void CriteriaTest::cleanupTestCase()
 {
     criteria.clear();
     QCOMPARE(criteria.isEmpty(), true);
-    QCOMPARE(criteria.column().isEmpty(), true);
-    QCOMPARE(criteria.from(), QString(""));
+    //QCOMPARE(criteria.column().isEmpty(), true);
+    //QCOMPARE(criteria.from(), QString(""));
     QCOMPARE(criteria.where().isEmpty(), true);
-    QCOMPARE(criteria.andList().isEmpty(), true);
+    //QCOMPARE(criteria.andList().isEmpty(), true);
     QCOMPARE(criteria.limit(), 0);
-    QCOMPARE(criteria.orderBy().isEmpty(), true);
+    //QCOMPARE(criteria.orderBy().isEmpty(), true);
 }
 
 void CriteriaTest::testColumns()
 {
+    QSKIP("skipping");
+    /*
     QCOMPARE(criteria.isEmpty(), true);
 
     criteria.appendColumn("title");
@@ -58,28 +60,48 @@ void CriteriaTest::testColumns()
 
     QCOMPARE(criteria.column(), QStringList() << "title" << "summary"
                                 << "description" << "runtime");
+    */
 }
 
 void CriteriaTest::testFrom()
 {
-    criteria.setFrom("movies");
-    QCOMPARE(criteria.from(), QString("movies") );
-    QCOMPARE(criteria.isEmpty(), false);
+    QSKIP("skipping");
+    //criteria.setFrom("movies");
+    //QCOMPARE(criteria.from(), QString("movies") );
+    //QCOMPARE(criteria.isEmpty(), false);
 }
 
 void CriteriaTest::testWhere()
 {
     QCOMPARE(criteria.hasWhere(), false);
     criteria.addWhere("genre", "like", "sci fi");
+    criteria.addWhere("genre", "like", "action");
+    criteria.addWhere("genre", "like", "drama");
+    criteria.addWhere("watchstatus", "is", "true");
+    QCOMPARE(criteria.whereCount(), 4);
     QCOMPARE(criteria.hasWhere(), true);
 
-    QCOMPARE(criteria.where().column(), QString("genre") );
-    QCOMPARE(criteria.where().operation(), QString("like") );
-    QCOMPARE(criteria.where().value(), QString("sci fi") );
+    QCOMPARE(criteria.where().at(0).column(), QString("genre"));
+    QCOMPARE(criteria.where().at(0).operation(), QString("like"));
+    QCOMPARE(criteria.where().at(0).value(), QString("sci fi"));
+
+    QCOMPARE(criteria.where().at(1).column(), QString("genre"));
+    QCOMPARE(criteria.where().at(1).operation(), QString("like"));
+    QCOMPARE(criteria.where().at(1).value(), QString("action"));
+
+    QCOMPARE(criteria.where().at(2).column(), QString("genre"));
+    QCOMPARE(criteria.where().at(2).operation(), QString("like"));
+    QCOMPARE(criteria.where().at(2).value(), QString("drama"));
+
+    QCOMPARE(criteria.where().at(3).column(), QString("watchstatus"));
+    QCOMPARE(criteria.where().at(3).operation(), QString("is"));
+    QCOMPARE(criteria.where().at(3).value(), QString("true"));
 }
 
 void CriteriaTest::testAnd()
 {
+    QSKIP("skipping");
+    /*
     QCOMPARE(criteria.andCount(), 0);
     criteria.addAnd("genre", "like", "action");
     criteria.addAnd("genre", "like", "drama");
@@ -97,6 +119,7 @@ void CriteriaTest::testAnd()
     QCOMPARE(criteria.andList().at(2).column(), QString("watchstatus"));
     QCOMPARE(criteria.andList().at(2).operation(), QString("is"));
     QCOMPARE(criteria.andList().at(2).value(), QString("true"));
+    */
 }
 
 void CriteriaTest::testLimit()
@@ -109,21 +132,29 @@ void CriteriaTest::testLimit()
 
 void CriteriaTest::testOrderBy()
 {
-    QCOMPARE(criteria.hasOrderBy(), false);
-    criteria.setOrderBy("title", "DESC");
-    QCOMPARE(criteria.hasOrderBy(), true);
-    QCOMPARE(criteria.orderBy().column(), QString("title"));
-    QCOMPARE(criteria.orderBy().value(), QString("DESC"));
+    //QSKIP("skipping");
+    //QCOMPARE(criteria.hasOrderBy(), false);
+    //criteria.setOrderBy("title", "DESC");
+    //QCOMPARE(criteria.hasOrderBy(), true);
+    //QCOMPARE(criteria.orderBy().column(), QString("title"));
+    //QCOMPARE(criteria.orderBy().value(), QString("DESC"));
 }
 
 void CriteriaTest::testResultingQuery()
 {
-    QString q("select title, summary, description, runtime ");
-    q.append("from movies ");
+
+    //QString q("select title, summary, description, runtime ");
+    //q.append("from movies ");
+    //q.append("where genre like sci fi ");
+    //q.append("and genre like action and genre like drama ");
+    //q.append("and watchstatus is true ");
+    //q.append("order_by title DESC ");
+    //q.append("limit 10");
+    QString q;
     q.append("where genre like sci fi ");
-    q.append("and genre like action and genre like drama ");
+    q.append("and genre like action ");
+    q.append("and genre like drama ");
     q.append("and watchstatus is true ");
-    q.append("order_by title DESC ");
     q.append("limit 10");
     QCOMPARE(criteria.toString(), q);
 }

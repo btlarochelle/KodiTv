@@ -30,9 +30,9 @@ target_link_libraries(kodiMysqlDbTest KodiMysqlDb)
 
 #add_test(NAME kodiMysqlDbTest COMMAND kodiMysqlDbTest)
 
+add_test(NAME criteriaTest COMMAND criteriaTest)
 add_test(NAME channelModelTest COMMAND channelModelTest)
 add_test(NAME channelModelJsonTest COMMAND channelModelJsonTest)
-add_test(NAME criteriaTest COMMAND criteriaTest)
 
 qt5_use_modules(kodiMysqlDbTest Test Core)
 qt5_use_modules(channelModelTest Test Core)

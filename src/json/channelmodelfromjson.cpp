@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QJsonParseError>
 #include <QTime>
 
 // local
@@ -24,7 +25,10 @@ ChannelModelFromJson::ChannelModelFromJson(const QString &file)
 
     val = jsonFile.readAll();
     jsonFile.close();
-    document = QJsonDocument::fromJson(val.toUtf8());
+    QJsonParseError parseError;
+    document = QJsonDocument::fromJson(val.toUtf8(), &parseError);
+    qDebug() << DEBUG_FUNCTION << "error: " << parseError.errorString();
+
 }
 
 // public
@@ -71,51 +75,23 @@ bool ChannelModelFromJson::parse(ChannelModel &model)
 // private
 void ChannelModelFromJson::parseCriteria(Channel *channel, QJsonObject &object)
 {
-    //qDebug() << DEBUG_FUNCTION << "entered";
-    QJsonObject::Iterator it;
+    QJsonObject::const_iterator it;
     for(it = object.begin(); it != object.end(); it++) {
 
-        if(it.key() == "columns" ) {
-            QJsonArray array = it.value().toArray();
-            for(int i = 0; i < array.size(); i++) {
-                //qDebug() << "column: " << i << " " << array.at(i).toString();
-                channel->criteria().appendColumn(array.at(i).toString() );
-            }
-        }
-        else if(it.key() == "from") {
-            //qDebug() << "from: " << it.value().toString();
-            channel->criteria().setFrom(it.value().toString() );
-        }
-        else if(it.key() == "where" ) {
-            QJsonObject obj = it.value().toObject();
-            QJsonObject::iterator iter;
-            for(iter = obj.begin(); iter != obj.end(); iter++) {
-                QJsonObject::iterator it;
-                QJsonObject obj2 = iter.value().toObject();
-                for(it = obj2.begin(); it != obj2.end(); it++) {
-                    //qDebug() << "where " << iter.key() << it.key() << it.value().toString();
-                    channel->criteria().addWhere(iter.key(), it.key(), it.value().toString()  );
+        if(it.key() == "where" ) {
+            foreach(const QJsonValue &value, it.value().toArray()) {
+
+                QJsonObject::const_iterator columnsIter;
+                QJsonObject columns = value.toObject();
+                for(columnsIter = columns.begin(); columnsIter != columns.end(); columnsIter++) {
+
+                    QJsonObject obj = columnsIter.value().toObject();
+                    QJsonObject::const_iterator iter;
+                    for(iter = obj.begin(); iter != obj.end(); iter++) {
+                        channel->criteria().addWhere(columnsIter.key(), iter.key(), iter.value().toString());
+                    }
                 }
-            }
-        }
-        else if(it.key() == "and") {
-            QJsonObject obj = it.value().toObject();
-            QJsonObject::iterator iter;
-            for(iter = obj.begin(); iter != obj.end(); iter++) {
-                QJsonObject::iterator it;
-                QJsonObject obj2 = iter.value().toObject();
-                for(it = obj2.begin(); it != obj2.end(); it++) {
-                    //qDebug() << "and " << iter.key() << it.key() << it.value().toString();
-                    channel->criteria().addAnd(iter.key(), it.key(), it.value().toString() );
-                }
-            }
-        }
-        else if(it.key() == "order_by") {
-            QJsonObject obj = it.value().toObject();
-            QJsonObject::iterator iter;
-            for(iter = obj.begin(); iter != obj.end(); iter++) {
-                //qDebug() << "orderby " << iter.key() << " " << iter.value().toString();
-                channel->criteria().setOrderBy(iter.key(), iter.value().toString() );
+
             }
         }
         else if(it.key() == "limit") {
@@ -123,8 +99,8 @@ void ChannelModelFromJson::parseCriteria(Channel *channel, QJsonObject &object)
             channel->criteria().setLimit(it.value().toInt() );
         }
         else {
-            qDebug() << "key: " << it.key();
-            qDebug() << "value: " << it.value();
+            //qDebug() << "key: " << it.key();
+            //qDebug() << "value: " << it.value();
         }
     }
 }
