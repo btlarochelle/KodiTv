@@ -3,10 +3,19 @@
 
 #include "kodimysqldatabase.h"
 #include "querythread.h"
-#include "../include/connection.h"
+#include "../src/models/channelmodel.h"
 #include "../include/config.h"
 
-KodiMysqlDatabase::KodiMysqlDatabase(Connection *connection)
+const QString MovieGenres("MoviesGenres");
+const QString TvShowGenres("TvshowsGenres");
+const QString MovieByGenre("MovieByGenre");
+const QString Movies("Movies");
+const QString TvShows("Tvshows");
+
+
+KodiMysqlDatabase::KodiMysqlDatabase() : mQuerythread(nullptr) {}
+
+KodiMysqlDatabase::KodiMysqlDatabase(Connection connection)
     : mQuerythread(nullptr), mConnection(connection) {}
 
 KodiMysqlDatabase::~KodiMysqlDatabase()
@@ -19,15 +28,15 @@ void KodiMysqlDatabase::start()
 {
     qDebug() << DEBUG_FUNCTION << "entered";
     mQuerythread = new QueryThread();
-    if(mConnection != 0) {
-        mQuerythread->setHost(mConnection->host);
-        mQuerythread->setUsername(mConnection->username);
-        mQuerythread->setPassword(mConnection->password);
-        mQuerythread->setDatabaseName(mConnection->databaseName);
-        mQuerythread->setConnectionName(mConnection->connectionName);
-        mQuerythread->setDriver(mConnection->driver);
-        mQuerythread->setPort(mConnection->port);
-    }
+    //if(mConnection != 0) {
+        mQuerythread->setHost(mConnection.host);
+        mQuerythread->setUsername(mConnection.username);
+        mQuerythread->setPassword(mConnection.password);
+        mQuerythread->setDatabaseName(mConnection.databaseName);
+        mQuerythread->setConnectionName(mConnection.connectionName);
+        mQuerythread->setDriver(mConnection.driver);
+        mQuerythread->setPort(mConnection.port);
+    //}
 
     connect(mQuerythread, SIGNAL(progress(QString)),this, SLOT(process(QString)) );
     connect(mQuerythread, SIGNAL(ready(bool) ), this, SLOT(ready(bool) ) );
@@ -47,38 +56,93 @@ void KodiMysqlDatabase::runQuery(const QString &queryId, const QString &query)
     mQuerythread->execute(queryId, query);
 }
 
-void KodiMysqlDatabase::doSomething() const
+void KodiMysqlDatabase::getMovieGenres()
 {
-    qDebug() << DEBUG_FUNCTION << "KodiMysqlDatabase::doSomething() Called";
+    QString query;
+    query.append("select distinct(name) from genre ");
+    query.append("join genre_link on genre.genre_id=genre_link.genre_id ");
+    query.append("and genre_link.media_type='movie' ");
+    query.append("order by name asc");
+    runQuery(MovieGenres, query);
+}
+
+void KodiMysqlDatabase::getTvShowGenres()
+{
+    QString query;
+    query.append("select distinct(name) from genre ");
+    query.append("join genre_link on genre.genre_id=genre_link.genre_id ");
+    query.append("and genre_link.media_type='tvshow' ");
+    query.append("order by name asc");
+    runQuery(TvShowGenres, query);
+}
+
+void KodiMysqlDatabase::getMoviesByGenre(const QString &queryId, const QString &genre)
+{
+    QString query;
+    query.append("select * from movie_view ");
+    query.append("join genre_link on genre_link.media_id=movie_view.idMovie ");
+    query.append("and genre_link.media_type='movie' ");
+    query.append("join genre on genre.genre_id=genre_link.genre_id ");
+    query.append( QString("where genre.name like '%1' ").arg(genre) );
+    query.append("order by rand() ");
+    query.append("limit 10 ");
+    runQuery(queryId, query);
+}
+
+void KodiMysqlDatabase::loadModel(ChannelModel *model)
+{
+    qDebug() << DEBUG_FUNCTION << "entered";
+    this->model = model;
+    start();
 }
 
 void KodiMysqlDatabase::slotResults(const QString &queryId, const QList<QSqlRecord> &records, const QString &resultId)
 {
-    emit finished();
     qDebug() << DEBUG_FUNCTION_SHORT << "entered";
-
-    qDebug() << "\n";
     qDebug() << "queryId: "  << queryId;
     qDebug() << "returned " << records.count() << " records";
-    //qDebug() << "records: "  << records;
     qDebug() << "resultId: " << resultId;
 
-    foreach (QSqlRecord record, records) {
-        //qDebug() << "name :" << record.field(0);
-        //qDebug() << "id: " << record.value(0) << "value: " << record.value(1);
-        if(queryId == "movie_genres" || queryId == "tvshow_genres") {
-            qDebug() << "genre: " << record.value(0).toString();
-        }
-        else if(queryId == "movies") {
+    //foreach (QSqlRecord record, records) {
+    for(int i = 0; i < records.count(); i++ ) {
 
+        if(queryId == MovieGenres) {
+            qDebug() << "movie genre: " << records.at(i).value(0).toString();
+            //model->addMovieGenre(record.value(0).toString() );
+            model->addMovieGenre(records.at(i).value(0).toString() );
+        }
+        else if(queryId == TvShowGenres) {
+            qDebug() << "tvshow genre: " << records.at(i).value(0).toString();
+            model->addTvShowGenre(records.at(i).value(0).toString() );
+        }
+        //else if(queryId == MovieByGenre) {
+        //else if(queryId.contains(MovieByGenre) ) {
+        else if(queryId.startsWith(MovieByGenre) ) {
             //qDebug() << "id: " << record.value(0) << "value: " << record.value(1);
-            qDebug() << "title: " << record.value(2).toString();
+            qDebug() << "title: " << records.at(i).value(2).toString();
+            QStringList split = queryId.split("_");
+            int index = split.at(1).toInt() - 1;
+            VideoItem *video = new VideoItem();
+            video->setTitle(records.at(i).value(2).toString());
+            //qDebug() << "index: " << index;
+
+            model->at(index)->appendVideo(video);
+
         }
     }
+    if(queryId == MovieGenres) {
+        //getTvShowGenres();
+
+    }
+    else if(queryId == TvShowGenres) {
+        //getMoviesByGenre("Action");
+
+    }
+    if(queryId == MovieByGenre) {
 
 
-
-
+        //emit finished();
+    }
 }
 
 void KodiMysqlDatabase::process(QString msg)
@@ -90,9 +154,17 @@ void KodiMysqlDatabase::ready(bool ready)
 {
     qDebug() << DEBUG_FUNCTION << "ready: " << ready;
     if(ready) {
-        //mQuerythread->execute("select movies", "select * from genre");
-        //mQuerythread->execute("select movies", "select * from movie_view");
-        //m_querythread->execute("select * from movies", "");
+        getMovieGenres();
+        getTvShowGenres();
+
+        if(model->rowCount() > 0) {
+            for(int i = 0; i < model->rowCount(); i++) {
+                QString queryId = QString("%1_%2_%3").arg(MovieByGenre)
+                                                     .arg(model->at(i)->number())
+                                                     .arg(model->at(i)->criteria().where().at(0).value());
+                getMoviesByGenre(queryId, model->at(i)->criteria().where().at(0).value());
+            }
+        }
     }
 }
 

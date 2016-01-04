@@ -27,7 +27,8 @@ void Core::loadPlugins()
         QObject *plugin = loader.instance();
         if(plugin) {
             BackendPluginInterface *tmp = qobject_cast<BackendPluginInterface*>(plugin);
-            tmp->doSomething();
+            Q_UNUSED(tmp);
+            //tmp->doSomething();
             pluginFileNames += fileName;
         }
     }

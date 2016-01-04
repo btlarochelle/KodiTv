@@ -15,6 +15,7 @@
 // local
 #include "../backends/kodimysqldatabase.h"
 #include "../include/connection.h"
+#include "../src/models/channelmodel.h"
 #include "../include/config.h"
 
 const QString Host("192.168.1.5");
@@ -33,6 +34,7 @@ private:
     void wait();
     KodiMysqlDatabase *db;
     bool mWait;
+    ChannelModel model;
 public slots:
     void finished();
     void results(const QString &query, const QList<QSqlRecord> &records,
@@ -45,9 +47,7 @@ private slots:
 
     // tests
     void testQueries();
-    void testGetMovieGenres();
-    void testGetMovies();
-    void testGetTvShows();
+    void testLoadModel();
     void testSomething();
 
 };
@@ -64,9 +64,9 @@ void KodiMysqlDbTest::wait()
     QTime time = QTime::currentTime();
     while(mWait) {
         QCoreApplication::processEvents();
-        if(time.elapsed() > 3000) {
-            qDebug() << "breaking timeout";
-            break;
+        if(time.elapsed() > 6000) {
+            //qDebug() << "breaking timeout";
+            //break;
         }
     }
     mWait = true;
@@ -99,9 +99,9 @@ void KodiMysqlDbTest::initTestCase()
     connection.connectionName = ConnectionName;
     connection.driver = Driver;
 
-    db = new KodiMysqlDatabase(&connection);
+    db = new KodiMysqlDatabase(connection);
 
-    db->start();
+    //db->start();
     QObject::connect(db, SIGNAL(finished() ), this, SLOT(finished() ) );
 }
 
@@ -115,103 +115,45 @@ void KodiMysqlDbTest::cleanupTestCase()
 // tests
 void KodiMysqlDbTest::testQueries()
 {
-    //QSKIP("skip");
+    QSKIP("skip");
+    db->start();
     QTest::qWait(1000); // wait for worker it get ready
-    QString tmp;
-
-    tmp.append("select distinct(name) from genre ");
-    tmp.append("join genre_link on genre.genre_id=genre_link.genre_id ");
-    tmp.append("and genre_link.media_type='movie' ");
-    tmp.append("order by name asc");
-
-    db->runQuery("movie_genres", tmp);
+    db->getMovieGenres();
     wait();
-
-    tmp.clear();
-    tmp.append("select distinct(name) from genre ");
-    tmp.append("join genre_link on genre.genre_id=genre_link.genre_id ");
-    tmp.append("and genre_link.media_type='tvshow' ");
-    tmp.append("order by name asc");
-
-    db->runQuery("tvshow_genres", tmp);
+    db->getTvShowGenres();
     wait();
-
-    tmp.clear();
-    tmp.append("select * from movie_view ");
-    tmp.append("join genre_link on genre_link.media_id=movie_view.idMovie ");
-    tmp.append("and genre_link.media_type='movie' ");
-    tmp.append("join genre on genre.genre_id=genre_link.genre_id ");
-    tmp.append("where genre.name like 'Horror' ");
-    tmp.append("order by rand() ");
-    tmp.append("limit 10 ");
-
-    db->runQuery("movies", tmp);
-    wait();
+    //db->getMoviesByGenre();
+    //wait();
 }
 
-void KodiMysqlDbTest::testGetMovieGenres()
+void KodiMysqlDbTest::testLoadModel()
 {
-    QSKIP("skip");
-    QTest::qWait(1000); // wait for worker it get ready
-    QString tmp;
 
-    /*
-    tmp.append("select distinct(name) from genre ");
-    tmp.append("join genre_link on genre.genre_id=genre_link.genre_id ");
-    tmp.append("and genre_link.media_type='movie'");
-    db->runQuery("movie_genres", tmp);
-    QTest::qWait(3000);
-
-    //while(wait)
-    //    QCoreApplication::processEvents();
-
-    tmp.clear();
-    tmp.append("select distinct(name) from genre ");
-    tmp.append("join genre_link on genre.genre_id=genre_link.genre_id ");
-    tmp.append("and genre_link.media_type='tvshow'");
-    db->runQuery("tvshow_genres", tmp);
-    QTest::qWait(3000);
-    */
-
-
-    tmp.clear();
-    tmp.append("select * from movie_view ");
-    tmp.append("join genre_link on genre_link.media_id=movie_view.idMovie ");
-    tmp.append("and genre_link.media_type='movie' ");
-    tmp.append("join genre on genre.genre_id=genre_link.genre_id ");
-    tmp.append("where genre.name like 'Horror' ");
-    db->runQuery("movies", tmp);
-    QTest::qWait(3000);
-}
-
-void KodiMysqlDbTest::testGetMovies()
-{
-    QSKIP("skip");
-    /*
-    db.selectMovieGenres();
-    //db.selectMovies();
-
-    //QSignalSpy spy(&db, SIGNAL(finished()) );
-
-    while(wait)
-        QCoreApplication::processEvents();
-    //QTest::qWait(10000);
-    //QCOMPARE(spy.count(), 1);
-
-    wait = true;
-    db.selectMovies();
-    */
-    //QTest::qWait(20000);
-}
-
-void KodiMysqlDbTest::testGetTvShows()
-{
-    QSKIP("skip");
 }
 
 void KodiMysqlDbTest::testSomething()
 {
-    db->doSomething();
+    Channel *channel = new Channel();
+    channel->setNumber(1);
+    channel->setType(Channel::Type::Movie);
+    channel->setDescription("Action movies");
+    channel->criteria().addWhere("genre", "like", "Action");
+    model.append(channel);
+
+    channel = new Channel();
+    channel->setNumber(2);
+    channel->setType(Channel::Type::Movie);
+    channel->setDescription("Sci-Fi movies");
+    channel->criteria().addWhere("genre", "like", "Sci-Fi");
+    model.append(channel);
+
+
+    QTest::qWait(1000); // wait for worker it get ready
+    db->loadModel(&model);
+    wait();
+
+
+
 }
 
 

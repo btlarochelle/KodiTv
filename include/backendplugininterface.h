@@ -3,12 +3,14 @@
 
 #include <QtCore/qglobal.h>
 
+class ChannelModel;
+
 class BackendPluginInterface
 {
 public:
     virtual ~BackendPluginInterface() {}
 
-    virtual void doSomething() const = 0;
+    virtual void loadModel(ChannelModel *model) = 0;
 
 };
 

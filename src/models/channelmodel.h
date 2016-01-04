@@ -97,6 +97,7 @@ public:
     ~ChannelModel();
 
     void clear();
+    void clearGenres();
     bool isEmpty() const;
 
     Channel* at(const int &index);
@@ -104,6 +105,11 @@ public:
     void insert(int row, Channel *channel);
     void append(Channel *channel);
     void removeAt(const int &index);
+
+    QStringList movieGenres() const;
+    QStringList tvShowGenres() const;
+    void addMovieGenre(const QString &genre);
+    void addTvShowGenre(const QString &genre);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
@@ -114,6 +120,8 @@ private:
     QHash<int, QByteArray> mRoleNames;
     QList<Channel*> mChannels;
     Channel *invalid;
+    QStringList mMovieGenres;
+    QStringList mTvShowGenres;
 
 };
 #endif

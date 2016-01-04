@@ -43,6 +43,13 @@ void ChannelModel::clear()
     mChannels.clear();
 }
 
+void ChannelModel::clearGenres()
+{
+    mMovieGenres.clear();
+    mTvShowGenres.clear();
+}
+
+
 bool ChannelModel::isEmpty() const
 {
     return mChannels.isEmpty();
@@ -93,6 +100,26 @@ void ChannelModel::removeAt(const int &index)
     delete (mChannels.takeAt(index));
     //mChannels.removeAt(row);
     endRemoveRows();
+}
+
+QStringList ChannelModel::movieGenres() const
+{
+    return mMovieGenres;
+}
+
+QStringList ChannelModel::tvShowGenres() const
+{
+    return mTvShowGenres;
+}
+
+void ChannelModel::addMovieGenre(const QString &genre)
+{
+    mMovieGenres.append(genre);
+}
+
+void ChannelModel::addTvShowGenre(const QString &genre)
+{
+   mTvShowGenres.append(genre);
 }
 
 int ChannelModel::rowCount(const QModelIndex &parent) const

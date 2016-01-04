@@ -199,6 +199,7 @@ void ChannelModelTest::testChannelModel()
     QCOMPARE(model.at(1)->number(), 2);
     QCOMPARE(model.isEmpty(), false);
 
+
     // test removing
     model.removeAt(1);
     QCOMPARE(model.rowCount(), 1);
@@ -233,6 +234,25 @@ void ChannelModelTest::testChannelModel()
     QCOMPARE(tmp->number(), 1);
     tmp = model.findChannelByNumber(2);
     QCOMPARE(tmp->number(), 2);
+
+    // test genres
+    model.addMovieGenre("fantasy");
+    QCOMPARE(model.movieGenres().at(0), QString("fantasy"));
+    QCOMPARE(model.movieGenres().count(), 1);
+    model.addMovieGenre("drama");
+    QCOMPARE(model.movieGenres().at(1), QString("drama"));
+    QCOMPARE(model.movieGenres().count(), 2);
+
+    model.addTvShowGenre("comedy");
+    QCOMPARE(model.tvShowGenres().at(0), QString("comedy") );
+    QCOMPARE(model.tvShowGenres().count(), 1);
+    model.addTvShowGenre("anime");
+    QCOMPARE(model.tvShowGenres().at(1), QString("anime") );
+    QCOMPARE(model.tvShowGenres().count(), 2);
+
+    model.clearGenres();
+    QCOMPARE(model.movieGenres().count(), 0);
+    QCOMPARE(model.tvShowGenres().count(), 0);
 }
 
 

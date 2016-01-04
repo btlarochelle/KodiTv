@@ -8,10 +8,11 @@
 #include <QSqlRecord>
 
 #include "../include/backendplugininterface.h"
+#include "../include/connection.h"
 
+class ChannelModel;
 class QSqlDatabase;
 class QueryThread;
-class Connection;
 
 class KodiMysqlDatabase : public QObject, public BackendPluginInterface
 {
@@ -19,15 +20,21 @@ class KodiMysqlDatabase : public QObject, public BackendPluginInterface
     Q_PLUGIN_METADATA(IID "com.KodiTv.BackendPluginInterface" )
     Q_INTERFACES(BackendPluginInterface)
 public:
-    KodiMysqlDatabase(Connection *connection = 0);
+    KodiMysqlDatabase();
+    KodiMysqlDatabase(Connection connection);
+
     ~KodiMysqlDatabase();
 
     void start();
     void end();
     void runQuery(const QString &queryId, const QString &query);
 
+    void getMovieGenres();
+    void getTvShowGenres();
+    void getMoviesByGenre(const QString &queryId, const QString &genre);
+
     // plugin interface
-    void doSomething() const;
+    void loadModel(ChannelModel *model);
 signals:
     void finished();
 private slots:
@@ -36,7 +43,9 @@ private slots:
     void ready(bool ready);
 private:
     QueryThread *mQuerythread;
-    Connection *mConnection;
+    ChannelModel *model;
+    Connection mConnection;
+    int currentIndex;
 };
 
 #endif
