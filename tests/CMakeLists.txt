@@ -42,5 +42,7 @@ qt5_use_modules(channelModelJsonTest Test Core)
 qt5_use_modules(criteriaTest Test Core)
 
 
+add_subdirectory(uitests)
+
 
 
