@@ -6,7 +6,7 @@
 
 //Criteria::Criteria() {}
 
-Criteria::Criteria() : mLimit(50) {}
+Criteria::Criteria() : mLimit(10) {}
 
 Criteria::~Criteria() {}
 

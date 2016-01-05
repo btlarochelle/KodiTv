@@ -16,7 +16,9 @@
 #include "../backends/kodimysqldatabase.h"
 #include "../include/connection.h"
 #include "../src/models/channelmodel.h"
+#include "../src/json/channelmodeltojson.h"
 #include "../include/config.h"
+
 
 const QString Host("192.168.1.5");
 const int Port(3306);
@@ -26,6 +28,8 @@ const QString DatabaseName("MyVideos93");
 const QString ConnectionName("KodiDb");
 const QString Driver("QMYSQL3");
 //const QString Driver("QMYSQL");
+
+const QString ChannelData("../data/channelData.json");
 
 class KodiMysqlDbTest : public QObject
 {
@@ -64,9 +68,9 @@ void KodiMysqlDbTest::wait()
     QTime time = QTime::currentTime();
     while(mWait) {
         QCoreApplication::processEvents();
-        if(time.elapsed() > 6000) {
-            //qDebug() << "breaking timeout";
-            //break;
+        if(time.elapsed() > 3000) {
+            qDebug() << "breaking timeout";
+            break;
         }
     }
     mWait = true;
@@ -147,12 +151,41 @@ void KodiMysqlDbTest::testSomething()
     channel->criteria().addWhere("genre", "like", "Sci-Fi");
     model.append(channel);
 
+    channel = new Channel();
+    channel->setNumber(3);
+    channel->setType(Channel::Type::Movie);
+    channel->setDescription("Animation movies");
+    channel->criteria().addWhere("genre", "like", "Animation");
+    model.append(channel);
+
+    channel = new Channel();
+    channel->setNumber(4);
+    channel->setType(Channel::Type::Movie);
+    channel->setDescription("Adventure movies");
+    channel->criteria().addWhere("genre", "like", "Adventure");
+    model.append(channel);
+
+    channel = new Channel();
+    channel->setNumber(5);
+    channel->setType(Channel::Type::Movie);
+    channel->setDescription("Comedy movies");
+    channel->criteria().addWhere("genre", "like", "Comedy");
+    model.append(channel);
+
+    channel = new Channel();
+    channel->setNumber(6);
+    channel->setType(Channel::Type::Movie);
+    channel->setDescription("Fantasy movies");
+    channel->criteria().addWhere("genre", "like", "Fantasy");
+    model.append(channel);
+
 
     QTest::qWait(1000); // wait for worker it get ready
     db->loadModel(&model);
     wait();
 
-
+    ChannelModelToJson toJson(ChannelData);
+    toJson.write(model);
 
 }
 

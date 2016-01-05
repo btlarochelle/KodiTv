@@ -79,7 +79,8 @@ void KodiMysqlDatabase::getTvShowGenres()
 void KodiMysqlDatabase::getMoviesByGenre(const QString &queryId, const QString &genre)
 {
     QString query;
-    query.append("select * from movie_view ");
+    //query.append("select * from movie_view ");
+    query.append("select idMovie, c00, c02, strFileName, strPath from movie_view ");
     query.append("join genre_link on genre_link.media_id=movie_view.idMovie ");
     query.append("and genre_link.media_type='movie' ");
     query.append("join genre on genre.genre_id=genre_link.genre_id ");
@@ -104,6 +105,14 @@ void KodiMysqlDatabase::slotResults(const QString &queryId, const QList<QSqlReco
     qDebug() << "resultId: " << resultId;
 
     //foreach (QSqlRecord record, records) {
+
+    int index = 0;
+    Q_UNUSED(index);
+    if(queryId.startsWith(MovieByGenre) ) {
+        QStringList split = queryId.split("_");
+        index = split.at(1).toInt() - 1;
+    }
+
     for(int i = 0; i < records.count(); i++ ) {
 
         if(queryId == MovieGenres) {
@@ -115,19 +124,21 @@ void KodiMysqlDatabase::slotResults(const QString &queryId, const QList<QSqlReco
             qDebug() << "tvshow genre: " << records.at(i).value(0).toString();
             model->addTvShowGenre(records.at(i).value(0).toString() );
         }
-        //else if(queryId == MovieByGenre) {
-        //else if(queryId.contains(MovieByGenre) ) {
         else if(queryId.startsWith(MovieByGenre) ) {
-            //qDebug() << "id: " << record.value(0) << "value: " << record.value(1);
-            qDebug() << "title: " << records.at(i).value(2).toString();
-            QStringList split = queryId.split("_");
-            int index = split.at(1).toInt() - 1;
+            //qDebug() << "id: " << records.at(i).value(0).toInt() << "title: " << records.at(i).value(1).toString();
+            //qDebug() << "      file: " << QString("%1%2").arg(records.at(i).value(3).toString()).arg(records.at(i).value(2).toString());
+
+            //qDebug() << "title: " << records.at(i).value(2).toString();
             VideoItem *video = new VideoItem();
-            video->setTitle(records.at(i).value(2).toString());
-            //qDebug() << "index: " << index;
-
-            model->at(index)->appendVideo(video);
-
+            video->setTitle(records.at(i).value(1).toString() );
+            video->setSummary(records.at(i).value(2).toString() );
+            //if(!records.at(i).value(3).toString().endsWith('/')) {
+            //    video->setFile(QString("%1/%2").arg(records.at(i).value(4).toString() ).arg(records.at(i).value(3).toString() ) );
+            //}
+            //else {
+                video->setFile(QString("%1%2").arg(records.at(i).value(4).toString() ).arg(records.at(i).value(3).toString() ) );
+            //}
+             model->at(index)->appendVideo(video);
         }
     }
     if(queryId == MovieGenres) {
@@ -143,6 +154,9 @@ void KodiMysqlDatabase::slotResults(const QString &queryId, const QList<QSqlReco
 
         //emit finished();
     }
+
+
+
 }
 
 void KodiMysqlDatabase::process(QString msg)

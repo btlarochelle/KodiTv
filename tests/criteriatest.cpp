@@ -41,7 +41,7 @@ void CriteriaTest::cleanupTestCase()
 
 void CriteriaTest::testColumns()
 {
-    QSKIP("skipping");
+    //SKIP("skipping");
     /*
     QCOMPARE(criteria.isEmpty(), true);
 
@@ -65,7 +65,7 @@ void CriteriaTest::testColumns()
 
 void CriteriaTest::testFrom()
 {
-    QSKIP("skipping");
+    //QSKIP("skipping");
     //criteria.setFrom("movies");
     //QCOMPARE(criteria.from(), QString("movies") );
     //QCOMPARE(criteria.isEmpty(), false);
@@ -100,7 +100,7 @@ void CriteriaTest::testWhere()
 
 void CriteriaTest::testAnd()
 {
-    QSKIP("skipping");
+    //QSKIP("skipping");
     /*
     QCOMPARE(criteria.andCount(), 0);
     criteria.addAnd("genre", "like", "action");

@@ -64,8 +64,11 @@ add_custom_target(cppcheck COMMAND cppcheck --enable=all -q --error-exitcode=2
 #    ${CMAKE_SOURCE_DIR}/tests
 )
 
+FILE(GLOB_RECURSE DataFiles data/*.json )
+add_custom_target(DataFile SOURCES ${DataFiles})
+
 file(COPY data/basicexample.json DESTINATION ${CMAKE_BINARY_DIR}/data/)
-add_custom_target(Data SOURCES data/basicexample.json)
+file(COPY data/channelData.json DESTINATION ${CMAKE_BINARY_DIR}/data/)
 
 #include_directories(
 #    ${PROJECT_SOURCE_DIR}/src/models/

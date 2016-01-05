@@ -1,0 +1,586 @@
+{
+    "channels": [
+        {
+            "criteria": {
+                "limit": 10,
+                "where": [
+                    {
+                        "genre": {
+                            "like": "Action"
+                        }
+                    }
+                ]
+            },
+            "description": "Action movies",
+            "number": 1,
+            "type": "movie",
+            "videos": [
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Zulu.(1964)/Zulu.(1964).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "In 1879, during the Zulu wars, man of the people Lt. John Chard (Stanley Baker) and snooty Lt Gonville Bromhead (Michael Caine) are in charge of defending the isolated Natal outpost of Rorke's Drift from tribal hordes, holding out during an Alamo-like seige until they are overwhelmed, losing the battle, but going down in history as heroes. 150 soldiers defended a supply station against some 4000 Zulus, aided by the Martini-Henry rifle 'with some guts behind it. \"At Rorke's Drift, eleven Victoria Crosses were awarded. Seven to the 2nd Battalion, 24th (2nd Warwickshire) Regiment of Foot, one to the Army Medical Department, one to the Royal Engineers, one to the Commissariat and Transport Department and one to the Natal Native Contingent.",
+                    "title": "Zulu"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Maverick(1994)/Maverick(1994).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Maverick is a gambler who would rather con someone than fight them. He needs an additional three thousand dollars in order to enter a Winner Take All poker game that begins in a few days. He tries to win some, tries to collect a few debts, and recover a little loot for the reward. He joins forces with a woman gambler with a marvelous southern accent as the two both try and enter the game.",
+                    "title": "Maverick"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Scott.Pilgrim.vs.the.World(2010)/Scott.Pilgrim.vs.the.World(2010).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Scott Pilgrim must defeat his new girlfriend's seven evil exes in order to win her heart.",
+                    "title": "Scott Pilgrim vs. the World"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Lucy.(2014)/Lucy.(2014).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A woman, accidentally caught in a dark deal, turns the tables on her captors and transforms into a merciless warrior evolved beyond human logic.",
+                    "title": "Lucy"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Clash.Of.The.Titans(1981)/Clash.Of.The.Titans(1981).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A film adaption of the myth of Perseus and his quest to battle both Medusa and the Kraken monster to save the Princess Andromeda.",
+                    "title": "Clash of the Titans"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/The.Legend.Of.Billie.Jean.(1985)/The.Legend.Of.Billie.Jean.(1985).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A Texas teenager cuts her hair short and becomes an outlaw martyr with her brother and friends.",
+                    "title": "The Legend of Billie Jean"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Godzilla.vs.Mechagodzilla.(1974)/Godzilla.vs.Mechagodzilla.(1974).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Aliens intend to take over the planet and, just in case Godzilla tries to interfere, have built a mechanical version of him to put an end to his interference. The Earth humans summon the legendary King Seesar to assist Godzilla in the battle.",
+                    "title": "Godzilla vs. Mechagodzilla"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Battleship.(2012)/Battleship.(2012).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A fleet of ships is forced to do battle with an armada of unknown origins in order to discover and thwart their destructive goals.",
+                    "title": "Battleship"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/War.Pigs.(2015)/War.Pigs.(2015).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A rag tag unit of misfits known as the War Pigs must go behind enemy lines to exterminate Nazis by any means necessary.",
+                    "title": "War Pigs"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/The.Bourne.Identity(2002)/The.Bourne.Identity(2002).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A man is picked up by a fishing boat, bullet-riddled and without memory, then races to elude assassins and recover from amnesia.",
+                    "title": "The Bourne Identity"
+                }
+            ]
+        },
+        {
+            "criteria": {
+                "limit": 10,
+                "where": [
+                    {
+                        "genre": {
+                            "like": "Sci-Fi"
+                        }
+                    }
+                ]
+            },
+            "description": "Sci-Fi movies",
+            "number": 2,
+            "type": "movie",
+            "videos": [
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Heavy.Metal.(1981)/Heavy.Metal.(1981).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A glowing orb terrorizes a young girl with a collection of stories of dark fantasy, eroticism and horror.",
+                    "title": "Heavy Metal"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Blade.Runner.(1982)/Blade.Runner.(1982).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Deckard, a blade runner, has to track down and terminate 4 replicants who hijacked a ship in space and have returned to earth seeking their maker.",
+                    "title": "Blade Runner"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/G.I.Joe.The.Rise.of.Cobra.(2009)/G.I.Joe.The.Rise.of.Cobra.(2009).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "An elite military unit comprised of special operatives known as G.I. Joe, operating out of The Pit, takes on an evil organization led by a notorious arms dealer.",
+                    "title": "G.I. Joe: The Rise of Cobra"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Journey.2.The.Mysterious.Island.(2012)/Journey.2.The.Mysterious.Island.(2012).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Sean Anderson partners with his mom's husband on a mission to find his grandfather, who is thought to be missing on a mythical island.",
+                    "title": "Journey to the Mysterious Island"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/AquaTeen.Hunger.Force.colon.movie.(2007)/AquaTeen.Hunger.Force.colon.movie.(2007).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "An action epic that explores the origins of the Aqua Teen Hunger Force (better known as Master Shake, Frylock, and Meatwad,) who somehow become pitted in a battle over an immortal piece of exercise equipment.",
+                    "title": "Aqua Teen Hunger Force Colon Movie Film for Theaters and Television"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Hulk.(2003)/Hulk.(2003).m4v",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Bruce Banner, a genetics researcher with a tragic past, suffers an accident that causes him to transform into a raging green monster when he gets angry.",
+                    "title": "Hulk"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Monsters.Dark.Continent.(2014)/Monsters.Dark.Continent.(2014).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Seven years on from the events of Monsters, and the ‘Infected Zones’ have spread worldwide. Humans have been knocked off the top of the food chain, with disparate communities struggling for survival. American soldiers are being sent abroad to protect US interests from the Monsters, but the war is far from being won.",
+                    "title": "Monsters: Dark Continent"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Limitless.(2011)/Limitless.(2011).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A writer discovers a top-secret drug which bestows him with super human abilities.",
+                    "title": "Limitless"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Godzilla.King.of.the.Monsters! (1956)/Godzilla.King.of.the.Monsters! (1956).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A 400-foot (122-meter) dinosaur-like beast, awoken from undersea hibernation off the Japanese coast by atomic-bomb testing, attacks Tokyo. This is the 1956 edited American release of Gojira (1954).",
+                    "title": "Godzilla, King of the Monsters!"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/The.Hunger.Games.Catching.Fire.(2013)/The.Hunger.Games.Catching.Fire.(2013).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Katniss Everdeen has returned home safe after winning the 74th Annual Hunger Games along with fellow tribute Peeta Mellark. Winning means that they must turn around and leave their family and close friends, embarking on a \"Victor's Tour\" of the districts. Along the way Katniss senses that a rebellion is simmering, but the Capitol is still very much in control as President Snow prepares the 75th Annual Hunger Games (The Quarter Quell) - a competition that could change Panem forever.",
+                    "title": "The Hunger Games: Catching Fire"
+                }
+            ]
+        },
+        {
+            "criteria": {
+                "limit": 10,
+                "where": [
+                    {
+                        "genre": {
+                            "like": "Animation"
+                        }
+                    }
+                ]
+            },
+            "description": "Animation movies",
+            "number": 3,
+            "type": "movie",
+            "videos": [
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Penguins.of.Madagascar.(2014)/Penguins.of.Madagascar.(2014).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Skipper, Kowalski, Rico and Private join forces with undercover organization The North Wind to stop the villainous Dr. Octavius Brine from destroying the world as we know it.",
+                    "title": "Penguins of Madagascar"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/The.Book.of.Life.(2014)/The.Book.of.Life.(2014).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "From producer Guillermo del Toro and director Jorge Gutierrez comes an animated comedy with a unique visual style. THE BOOK OF LIFE is the journey of Manolo, a young man who is torn between fulfilling the expectations of his family and following his heart. Before choosing which path to follow, he embarks on an incredible adventure that spans three fantastical worlds where he must face his greatest fears. Rich with a fresh take on pop music favorites, THE BOOK OF LIFE encourages us to celebrate the past while looking forward to the future.",
+                    "title": "The Book of Life"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Batman.vs.Robin.(2015)/Batman.vs.Robin.(2015).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Damian Wayne (Stuart Allan) is having a hard time coping with his father's \"no killing\" rule. Meanwhile, Gotham is going through hell with threats such as the insane Dollmaker (\"Weird Al\" Yankovic), and the secretive Court of Owls.",
+                    "title": "Batman vs. Robin"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/The.Boxtrolls.(2014)/The.Boxtrolls.(2014).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "The Boxtrolls is a comedic fable that unfolds in Cheesebridge, a posh Victorian-era town obsessed with wealth, class and the stinkiest of fine cheeses. Beneath its charming cobblestone streets dwell the Boxtrolls, foul monsters who crawl out of the sewers at night and steal what the townspeople hold most dear: their children and their cheeses. At least that’s the legend residents have always believed. In truth, the Boxtrolls are an underground cavern-dwelling community of quirky and lovable oddballs who wear recycled cardboard boxes the way turtles wear their shells. The Boxtrolls have raised an orphaned human boy since infancy as one of their dumpster-diving and mechanical junk-collecting own. When the Boxtrolls are targeted by a villainous pest exterminator who is bent on eradicating them as his ticket to Cheesebridge society, the kind-hearted band of tinkerers must turn to their adopted charge and an adventurous rich girl to bridge two worlds amidst the winds of change – and cheese.",
+                    "title": "The Boxtrolls"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Ice.Age.(2002)/Ice.Age.(2002).m4v",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Set during the Ice Age, a sabertooth tiger, a sloth, and a wooly mammoth find a lost human infant, and they try to return him to his tribe.",
+                    "title": "Ice Age"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Secret.of.Nimh.(1982)/Secret.of.Nimh.(1982).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "To save her ill son, a field mouse must seek the aid of a colony of super-intelligent rats, with whom she has a deeper link than she ever suspected.",
+                    "title": "The Secret of NIMH"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/The.Prince.of.Egypt.(1998)/The.Prince.of.Egypt.(1998).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "This is the extraordinary tale of two brothers named Moses and Ramses, one born of royal blood, and one an orphan with a secret past. Growing up the best of friends, they share a strong bond of free-spirited youth and good-natured rivalry. But the truth will ultimately set them at odds, as one becomes the ruler of the most powerful empire on earth, and the other the chosen leader of his people! Their final confrontation will forever change their lives and the world.",
+                    "title": "The Prince of Egypt"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/My.Neighbor.Totoro.(1988)/My.Neighbor.Totoro.(1988).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "When two girls move to the country to be near their ailing mother, they have adventures with the wonderous forest spirits who live nearby.",
+                    "title": "My Neighbor Totoro"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/curious.george.a.very.monkey.christmas.(2009)/curious.george.a.very.monkey.christmas.(2009).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "George and The Man In The Yellow Hat are having a merry time counting down to Christmas. But neither can decide what to give each other. Will they find the answers before Christmas morning?",
+                    "title": "Curious George: A Very Monkey Christmas"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Winnie.The.Pooh.Seasons.of.Giving.(1999)/Winnie.The.Pooh.Seasons.of.Giving.(1999).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "",
+                    "title": "Winnie the Pooh: Seasons of Giving"
+                }
+            ]
+        },
+        {
+            "criteria": {
+                "limit": 10,
+                "where": [
+                    {
+                        "genre": {
+                            "like": "Adventure"
+                        }
+                    }
+                ]
+            },
+            "description": "Adventure movies",
+            "number": 4,
+            "type": "movie",
+            "videos": [
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Gamera.3.Awakening.of.Irys.(1999)/Gamera.3.Awakening.of.Irys.(1999).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "This final installment of the recent Gamera trilogy begins with schoolgirl Ayana discovering a large egg in a cave that, according to legend, houses demons. The egg hatches into a small monster, which Ayana decides to raise and quickly develops as psychic bond with. As Ayana's monster, named Iris, grows to adulthood, the flying turtle Gamera begins to take an interest in this new potential threat. Who will be the victor in the final battle, and how much of Japan will be left standing at the end?",
+                    "title": "Gamera: Revenge of Iris"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/The.Day.After.Tomorrow.(2004)/The.Day.After.Tomorrow.(2004).m4v",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Jack Hall, paleoclimatologist for NORAD, must make a daring trek across America to reach his son, trapped in the cross-hairs of a sudden international storm which plunges the planet into a new Ice Age.",
+                    "title": "The Day After Tomorrow"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/The.Martian.(2015)/The.Martian.(2015).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet. With only meager supplies, he must draw upon his ingenuity, wit and spirit to subsist and find a way to signal to Earth that he is alive.",
+                    "title": "The Martian"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Gojira.(1954)/Gojira.(1954).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Japan is thrown into a panic after several ships explode and are sunk near Odo Island. An expedition to the island led by paleontologist Professor Kyohei Yemani soon discover something more devastating than imagined in the form of a 164 foot tall monster whom the natives call Gojira. Now the monster begins a rampage that threatens to destroy not only Japan, but the rest of the world as well.",
+                    "title": "Gojira"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Godzilla.Raids.Again.(1955)/Godzilla.Raids.Again.(1955).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Two pilots are shocked when they see two giant monsters waging war before falling into the ocean. The two pilots race back to Japan to inform the government what they saw. Soon the world comes to the realization, that a monster closely related to the original Godzilla is on the loose as well as a new monster named Angilas. Soon, the two monsters arrive in Osaka where they resume their battle.",
+                    "title": "Godzilla Raids Again"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Van.Helsing.(2004)/Van.Helsing.(2004).m4v",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "The notorious monster hunter is sent to Transylvania to stop Count Dracula who is using Dr. Frankenstein's research and a werewolf for some sinister purpose.",
+                    "title": "Van Helsing"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Dungeons.&.Dragons.(2000)/Dungeons.&.Dragons.(2000).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Profion, a tyrant attempts to overthrow a peaceful kingdom ruled by a tough empress.",
+                    "title": "Dungeons & Dragons"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Mad.Max.Fury.Road.(2015)/Mad.Max.Fury.Road.(2015).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "An apocalyptic story set in the furthest reaches of our planet, in a stark desert landscape where humanity is broken, and most everyone is crazed fighting for the necessities of life. Within this world exist two rebels on the run who just might be able to restore order. There's Max, a man of action and a man of few words, who seeks peace of mind following the loss of his wife and child in the aftermath of the chaos. And Furiosa, a woman of action and a woman who believes her path to survival may be achieved if she can make it across the desert back to her childhood homeland.",
+                    "title": "Mad Max: Fury Road"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Godzilla.Vs.Megalon.(1973)/Godzilla.Vs.Megalon.(1973).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Aliens take control of Earth's monsters and begin using them to destroy the human race.",
+                    "title": "Godzilla vs. Megalon"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Iron.Man.2.(2010)/Iron.Man.2.(2010).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Because of his superhero alter ego, Tony Stark must contend with deadly issues involving the government, his own friends and new enemies.",
+                    "title": "Iron Man 2"
+                }
+            ]
+        },
+        {
+            "criteria": {
+                "limit": 10,
+                "where": [
+                    {
+                        "genre": {
+                            "like": "Comedy"
+                        }
+                    }
+                ]
+            },
+            "description": "Comedy movies",
+            "number": 5,
+            "type": "movie",
+            "videos": [
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Spies.Like.Us.(1985)/Spies.Like.Us.(1985).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Two bumbling government employees think they are U.S. spies, only to discover that they are actually decoys for Nuclear War.",
+                    "title": "Spies Like Us"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Welcome.to.the.Jungle.(2013)/Welcome.to.the.Jungle.(2013).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A company retreat on a tropical island goes terribly awry.",
+                    "title": "Welcome To The Jungle"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Major.League.Back.to.the.Minors.(1998)/Major.League.Back.to.the.Minors.(1998).m4v",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Aging minor league pitcher Gus Cantrell is planning to retire, but then Roger recruits Gus to be the manager of the South Carolina Buzz...",
+                    "title": "Major League III"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Inherent.Vice.(2014)/Inherent.Vice.(2014).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "In Los Angeles at the turn of the 1970s, drug-fueled detective Larry \"Doc\" Sportello investigates the disappearance of an ex-girlfriend.",
+                    "title": "Inherent Vice"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/I.Hope.They.Serve.Beer.In.Hell.(2009)/I.Hope.They.Serve.Beer.In.Hell.(2009).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A guy tries to patch things up with his soon-to-be-married pal after botching things up at his bachelor party. Based on Tucker Max's best-seller \"I Hope They Serve Beer in Hell\".",
+                    "title": "I Hope They Serve Beer in Hell"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Warm.Bodies.(2013)/Warm.Bodies.(2013).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "After a zombie becomes involved with the girlfriend of one of his victims, their romance sets in motion a sequence of events that might transform the entire lifeless world.",
+                    "title": "Warm Bodies"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/The.40.Year.Old.Virgin.(2005)/The.40.Year.Old.Virgin.(2005).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Goaded by his buddies, a nerdy guy who's never \"done the deed\" only finds the pressure mounting when he meets a single mother.",
+                    "title": "The 40 Year-Old Virgin"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Mars.Attacks!(1996)/Mars.Attacks!(1996).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "The Earth is invaded by Martians with irresistible weapons and a cruel sense of humor.",
+                    "title": "Mars Attacks!"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Valentines.Day.(2010)/Valentines.Day.(2010).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Intertwining couples and singles in Los Angeles break-up and make-up based on the pressures and expectations of Valentine's Day.",
+                    "title": "Valentine's Day"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Muppets.Most.Wanted.(2014)/Muppets.Most.Wanted.(2014).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "While on a grand world tour, The Muppets find themselves wrapped into an European jewel-heist caper headed by a Kermit the Frog look-alike and his dastardly sidekick.",
+                    "title": "Muppets Most Wanted"
+                }
+            ]
+        },
+        {
+            "criteria": {
+                "limit": 10,
+                "where": [
+                    {
+                        "genre": {
+                            "like": "Fantasy"
+                        }
+                    }
+                ]
+            },
+            "description": "Fantasy movies",
+            "number": 6,
+            "type": "movie",
+            "videos": [
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Rodan.(1956)/Rodan.(1956).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "When a village is besieged by giant caterpillars, a more horrifying discovery is made in their underground home...a giant flying creature that resembles the prehistoric pterodactyl. Soon after, a second Rodan appears and the two monsters begin to destroy Japan.",
+                    "title": "Rodan! The Flying Monster"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Vampire.Academy.(2014)/Vampire.Academy.(2014).mp4",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Rose Hathaway is a Dhampir, half human/vampire, guardians of the Moroi, peaceful, mortal vampires living discretely within our world. Her legacy is to protect the Moroi from bloodthirsty, immortal Vampires, the Strigoi. This is her story.",
+                    "title": "Vampire Academy"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Strange.Magic.(2015)/Strange.Magic.(2015).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "“Strange Magic” is a madcap fairy tale musical inspired by “A Midsummer Night’s Dream,” with popular songs from the past six decades used to help tell the tale of a colorful cast of goblins, elves, fairies and imps, and their hilarious misadventures sparked by the battle over a powerful potion.",
+                    "title": "Strange Magic"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Flight.of.Dragons.(1982)/Flight.of.Dragons.(1982).mkv",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A young Boston writer goes back in time into an era where wizards and dragon reign and science is just barely known.",
+                    "title": "The Flight of Dragons"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/King.Kong.(2005)/King.Kong.(2005).m4v",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "In 1933 New York, an overly ambitious movie producer coerces his cast and hired ship crew to travel to mysterious Skull Island, where they encounter Kong, a giant ape who is immediately smitten with leading lady Ann Darrow.",
+                    "title": "King Kong"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Kikis.Delivery.Service.(1989)/Kikis.Delivery.Service.(1989).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A young witch, on her mandatory year of independent life, finds fitting into a new community difficult while she supports herself by running an air courier service.",
+                    "title": "Kiki's Delivery Service"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/Hellboy.(2004)/Hellboy.(2004).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "A demon, raised from infancy after being conjured by and rescued from the Nazis, grows up to become a defender against the forces of darkness.",
+                    "title": "Hellboy"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Godzilla.vs.Mechagodzilla.(1974)/Godzilla.vs.Mechagodzilla.(1974).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "Aliens intend to take over the planet and, just in case Godzilla tries to interfere, have built a mechanical version of him to put an end to his interference. The Earth humans summon the legendary King Seesar to assist Godzilla in the battle.",
+                    "title": "Godzilla vs. Mechagodzilla"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5/media2/movies2/Godzilla.vs.The.Smog.Monster.(1971)/Godzilla.vs.The.Smog.Monster.(1971).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "From Earth's pollution a new monster is spawned. Hedrah, the smog monster, destroys Japan and fights Godzilla while spewing his poisonous gas to further the damage.",
+                    "title": "Godzilla vs. Hedorah"
+                },
+                {
+                    "endTime": "",
+                    "file": "smb://192.168.1.5//videos/movies/The.Chronicles.of.Narnia.Prince.Caspian.(2008)/The.Chronicles.of.Narnia.Prince.Caspian.(2008).avi",
+                    "runTime": "",
+                    "startTime": "",
+                    "summary": "The Pevensie siblings return to Narnia, where they are enlisted to once again help ward off an evil king and restore the rightful heir to the land's throne, Prince Caspian.",
+                    "title": "The Chronicles of Narnia: Prince Caspian"
+                }
+            ]
+        }
+    ]
+}

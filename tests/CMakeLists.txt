@@ -17,7 +17,9 @@
 
 add_executable(kodiMysqlDbTest kodimysqldbtest.cpp
                                ../src/models/channelmodel.cpp
-                               ../src/models/criteria.cpp)
+                               ../src/models/criteria.cpp
+                                ../src/json/channelmodeltojson.cpp
+)
 add_executable(channelModelTest channelmodeltest.cpp ../src/models/channelmodel.cpp
                                                      ../src/models/criteria.cpp )
 add_executable(channelModelJsonTest channelmodeljsontest.cpp
