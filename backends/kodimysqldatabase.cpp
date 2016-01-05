@@ -79,7 +79,19 @@ void KodiMysqlDatabase::getTvShowGenres()
 void KodiMysqlDatabase::getMoviesByGenre(const QString &queryId, const QString &genre)
 {
     QString query;
-    //query.append("select * from movie_view ");
+    query.append("select idMovie, c00, c02,");
+    query.append("strFileName, strPath, streamdetails.iVideoDuration ");
+    query.append("from movie_view ");
+    query.append("join genre_link on genre_link.media_id=movie_view.idMovie ");
+    query.append("and genre_link.media_type='movie' ");
+    query.append("inner join streamdetails on movie_view.idFile = streamdetails.idFile and streamdetails.iStreamType = \"0\"");
+    query.append("join genre on genre.genre_id=genre_link.genre_id ");
+    query.append( QString("where genre.name like '%1' ").arg(genre) );
+    query.append("order by rand() ");
+    query.append("limit 10 ");
+
+
+/*
     query.append("select idMovie, c00, c02, strFileName, strPath from movie_view ");
     query.append("join genre_link on genre_link.media_id=movie_view.idMovie ");
     query.append("and genre_link.media_type='movie' ");
@@ -87,6 +99,7 @@ void KodiMysqlDatabase::getMoviesByGenre(const QString &queryId, const QString &
     query.append( QString("where genre.name like '%1' ").arg(genre) );
     query.append("order by rand() ");
     query.append("limit 10 ");
+*/
     runQuery(queryId, query);
 }
 
@@ -125,8 +138,9 @@ void KodiMysqlDatabase::slotResults(const QString &queryId, const QList<QSqlReco
             model->addTvShowGenre(records.at(i).value(0).toString() );
         }
         else if(queryId.startsWith(MovieByGenre) ) {
-            //qDebug() << "id: " << records.at(i).value(0).toInt() << "title: " << records.at(i).value(1).toString();
-            //qDebug() << "      file: " << QString("%1%2").arg(records.at(i).value(3).toString()).arg(records.at(i).value(2).toString());
+            qDebug() << "id: " << records.at(i).value(0).toInt() << "title: " << records.at(i).value(1).toString();
+            qDebug() << "      file: " << QString("%1%2").arg(records.at(i).value(4).toString()).arg(records.at(i).value(3).toString());
+            qDebug() << "      duration: " << records.at(i).value(5).toString();
 
             //qDebug() << "title: " << records.at(i).value(2).toString();
             VideoItem *video = new VideoItem();
